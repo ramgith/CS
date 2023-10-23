@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Install mokutil and import certificate
+yum install -y mokutil
+mokutil --import /tmp/certfile
+
+# Ask for confirmation before rebooting
+read -p "Certificate imported successfully. Do you want to reboot the system? (y/n): " choice
+if [[ "$choice" =~ ^[Yy]$ ]]; then
+    echo "Rebooting the system..."
+    reboot
+else
+    echo "You chose not to reboot. Please remember to reboot your system later to complete the certificate import."
+fi
+
+# End of the script
